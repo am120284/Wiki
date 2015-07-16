@@ -2,12 +2,14 @@
 
 <div>
 
-	<%= @articles.each do |article| %><br/>
-		<small>Published at <%= article.created_at.strftime('%b %d, %y') %></small><br/>
+	<% @articles.each do |article| %><br/>
+		<small>Published <%= article.created_at.strftime('%b %d, %y') %></small><br/>
 		<strong><%= article.title %></strong><br/>
 		<%= truncate(article.content, length: 200) %><br/>
 		
 	<% end %>
 </div>
 
-<%= link_to "New Article", new_article_path %>
+<%if user_signed_in? %>
+	<%= link_to "New Article", new_article_path %>
+<% end %>
