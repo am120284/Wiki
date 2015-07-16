@@ -9,13 +9,22 @@
 
 require 'faker'
 
-# Create Posts
+# Create Categories
+ 3.times do
+   Category.create!(
+     name:  Faker::Lorem.sentence,
+   )
+ end
+
+
+# Create Articles
  10.times do
    Article.create!(
-     title:  Faker::Lorem.sentence,
-     content: Faker::Lorem.paragraph
+   title:  Faker::Lorem.sentence,
+   content: Faker::Lorem.paragraph
    )
  end
 
  puts "Seed finished"
- puts "#{Article.count} Articles created"
+ puts "#{Category.count} Categories created"
+  puts "#{Article.count} Articles created"
