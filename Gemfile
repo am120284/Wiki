@@ -18,7 +18,7 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 
 gem 'devise', '~> 3.5.1'
 
-gem 'simple-form-builder', '~> 0.0.8.rails3'
+gem 'faker'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -1,0 +1,13 @@
+<h1>This is the articles index</h1>
+
+<div>
+
+	<%= @articles.each do |article| %><br/>
+		<small>Published at <%= article.created_at.strftime('%b %d, %y') %></small><br/>
+		<strong><%= article.title %></strong><br/>
+		<%= truncate(article.content, length: 200) %><br/>
+		
+	<% end %>
+</div>
+
+<%= link_to "New Article", new_article_path %>

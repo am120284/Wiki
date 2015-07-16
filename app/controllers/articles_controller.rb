@@ -1,5 +1,11 @@
 class ArticlesController < ApplicationController
+	before_action :find_article, only: [:show]
 	def index
+		@articles = Article.all.order("created_at DESC")
+	end
+
+	def show
+		@article = Article.find(params[:id])
 	end
 
 	def new
@@ -11,11 +17,20 @@ class ArticlesController < ApplicationController
 
 		if @article.save
 			redirect_to @article
+	
+		else
+			render 'new'
 		end
-		render 'new'
 	end
 
+
+
+
 	private
+
+	def find_article
+	end
+
 	def article_params
 		params.require(:article).permit(:title, :content)
 	end
