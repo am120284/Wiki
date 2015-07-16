@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_action :find_article, only: [:show]
+	before_action :find_article, only: [:show, :edit, :update, :destroy]
 
 	#if a user who isnt signed in tries to created a new article he/she will be routed back to the home page
 	before_action :authenticate_user!, except: [:index, :show]
@@ -32,7 +32,24 @@ class ArticlesController < ApplicationController
 		end
 	end
 
+	def edit
+		@article = Article.find(params[:id])
+	end
 
+	def update
+		@article = Article.find(params[:id])
+		if @article.update(article_params)
+			redirect_to @article
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@article = Article.find(params[:id])
+		@article.destroy
+		redirect_to root_path
+	end
 
 
 	private
