@@ -8,18 +8,34 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"> <%= alert  %></p>
+  <div class="container">
+  	<%= link_to "Wiki", root_path, class: "navbar-brand"%>
+  	<ul class="nav navbar-nav navbar-right">
+  		<%if user_signed_in?%>
+  		<li><%= link_to "New Article", new_article_path %></li>
+  		<% end %>
+  	</ul>
+  	<a class="navbar-brand" href="#">Brand</a>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"> <%= alert  %></p>
+   </div>
+</nav>
 
+<div class="container">
+	<div class="row">
+	  <div class="col-md-8">
+		<%= yield %>
+	  </div>
+	  <div class="col-md-4">
+		<ul class="list-group">
+			<%= link_to "All Articles", root_path, class: "list-group-item" %>
 
-<%= yield %>
-
-	<ul>
-		<li><%= link_to "All Articles", root_path %></li>
-
-		<% Category.all.each do |c| %>
-		<li><%= link_to c.name, articles_path(category: c.name)%></li>
-	<% end %>
-	</ul>
+			    <% Category.all.each do |c| %>
+			<%= link_to c.name, articles_path(category: c.name), class: "list-group-item"%>
+		<% end %>
+		</ul>
+	   </div>
+	</div>
+</div>
 </body>
 </html>
